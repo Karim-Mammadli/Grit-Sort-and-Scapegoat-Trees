@@ -1,16 +1,3 @@
-/**
- * CS 251: Data Structures and Algorithms
- * Project 3: Part 1
- * <p>
- * TODO: implement scapegoat.
- *
- * @author Yunyu Liu, TODO: add your username here
- * @username liu3154, TODO: add your Purdue username here
- * @sources TODO: list your sources here
- * <p>
- * Use the algorithms written in sorting to implement this class.
- */
-
 import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Deque;
@@ -19,13 +6,9 @@ import java.lang.Math;
 
 public class Scapegoat {
 
-    // Root node
     private Node root;
-    // max node count required to implement deletion.
     private int MaxNodeCount = 0;
-    // total node number
     private int NodeCount = 0;
-    // parameter alpha
     private static final double threshold = 0.57;
 
     public class Node {
@@ -48,45 +31,19 @@ public class Scapegoat {
         }
     }
 
-
-    /**
-     *
-     * Constructor
-     *
-     */
     public Scapegoat() {
         root = null;
     }
-
-
-    /**
-     *
-     * Constructor
-     *
-     */
+    
     public Scapegoat(T data) {
         root = new Node(data, null, null, null);
         NodeCount++;
     }
 
-
-    /**
-     *
-     * @return return the root of the scapegoat tree
-     *
-     */
     public Node root() {
         return this.root;
     }
 
-
-    /**
-     *
-     * This function finds the first scapegoat node and returns it.
-     *
-     * @return void
-     *
-     */
     private Node scapegoatNode(Node node) {
 
         Node temp = node.parent;
@@ -100,14 +57,6 @@ public class Scapegoat {
         return null;
     }
 
-
-    /**
-     *
-     * This function re-builds the tree rooted at node into a perfectly balanced tree.
-     *
-     * @return void
-     *
-     */
     public Node rebuild(Node node) {
 
         List<Node> nodes = inorder(node);
@@ -116,14 +65,6 @@ public class Scapegoat {
 
     }
 
-
-    /**
-     *
-     * This function adds an element into the tree.
-     *
-     * @return void
-     *
-     */
     public void add(T data) {
         if (root == null) {
             root = new Node(data, null, null, null);
@@ -192,15 +133,6 @@ public class Scapegoat {
         }
 
     }
-
-
-    /**
-     *
-     * This function removes an element from the tree.
-     *
-     * @return void
-     *
-     */
 
     public void remove(T data) {
 
@@ -282,8 +214,6 @@ public class Scapegoat {
         return nodes;
     }
 
-
-    // not used, but you can use this to debug
     public void print() {
         List<Node> nodes = inorder(root);
         for (int i = 0; i < nodes.size(); i++) {
@@ -292,7 +222,6 @@ public class Scapegoat {
     }
 
 
-    // return the node whose data is the same as the given data.
     public Node find(T data) {
         Node current = root;
         int result;
@@ -310,7 +239,7 @@ public class Scapegoat {
     }
 
 
-    // find the succNode
+    // find the successor node
     public Node succNode(Node node) {
         Node succ = null;
         int result;
@@ -327,8 +256,6 @@ public class Scapegoat {
         return succ;
     }
 
-    // used in scapegoatNode function, not a delicated one...
-    // Just the brute force calculating the node's children's nubmer. Can be accelerated.
     private int size(Node node) {
         if (node == null)
             return 0;
@@ -336,7 +263,6 @@ public class Scapegoat {
     }
 
 
-    // BFS(not used, you may use this to help you debug)
     public List<Node> breadthFirstSearch() {
         System.out.println("root: " + this.root);
         Node node = root;
